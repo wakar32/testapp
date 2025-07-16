@@ -45,7 +45,7 @@ export default function TaskCard({ task, index, dispatch }) {
     <div
       className="task-card"
       style={{
-        background: "#d1d1d1ff",
+        background: "#ebebebff",
         border: "1px solid gray",
         margin: 10,
         padding: 5,
@@ -109,17 +109,19 @@ export default function TaskCard({ task, index, dispatch }) {
             className="tag"
             style={{
               fontSize: "10px",
-              background: "#9c9c9cff",
+              background: "#c2c2c2ff",
               border: "1px solid black",
               margin: "3px 4px",
               padding: "2px 10px",
               borderRadius: "10px",
               width: "fit-content",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            {tag}
+            <span>{tag}</span>
             <span
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", paddingLeft: 5 }}
               onClick={() =>
                 dispatch({ type: "REMOVE_TAG", index, payload: i })
               }

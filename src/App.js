@@ -57,13 +57,12 @@ export default function App() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: "10px",
           marginBottom: "20px",
         }}
       >
         <input
           ref={inputRef}
-          placeholder="Enter task name"
+          placeholder="Task name"
           style={{ padding: "8px", fontSize: "16px" }}
         />
         <button
@@ -71,8 +70,9 @@ export default function App() {
           style={{
             padding: "8px 12px",
             fontSize: "16px",
+            color: "white",
             cursor: "pointer",
-            background: "#61aefac4",
+            background: "#2d90f3c4",
           }}
         >
           Add

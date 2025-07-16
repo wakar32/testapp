@@ -8,7 +8,6 @@ export default function TaskColumn({ title, tasks, dispatch }) {
     <div
       className="column"
       style={{
-        backgroundColor: "#a6dbff",
         border: "1px solid black",
         width: "30%",
       }}
