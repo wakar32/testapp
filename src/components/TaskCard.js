@@ -44,7 +44,12 @@ export default function TaskCard({ task, index, dispatch }) {
   return (
     <div
       className="task-card"
-      style={{ background: "#d1d1d1ff", border: "1px solid gray", margin: 10 }}
+      style={{
+        background: "#d1d1d1ff",
+        border: "1px solid gray",
+        margin: 10,
+        padding: 5,
+      }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div
@@ -68,6 +73,13 @@ export default function TaskCard({ task, index, dispatch }) {
         value={task.status}
         onChange={handleStatusChange}
         disabled={task.status === "Completed"}
+        style={{
+          width: "95%",
+          boxSizing: "border-box",
+          padding: 8,
+          fontSize: 16,
+          margin: 4,
+        }}
       >
         {getStatusOptions()}
       </select>
@@ -77,6 +89,13 @@ export default function TaskCard({ task, index, dispatch }) {
             ref={tagInput}
             onKeyDown={addTag}
             placeholder="Add tag (max 3)"
+            style={{
+              width: "95%",
+              boxSizing: "border-box",
+              padding: 8,
+              fontSize: 16,
+              margin: 4,
+            }}
           />
         </div>
       )}
@@ -89,9 +108,11 @@ export default function TaskCard({ task, index, dispatch }) {
             key={i}
             className="tag"
             style={{
+              fontSize: "10px",
               background: "#9c9c9cff",
-              margin: 10,
-              padding: 2,
+              border: "1px solid black",
+              margin: "3px 4px",
+              padding: "2px 10px",
               borderRadius: "10px",
               width: "fit-content",
             }}
