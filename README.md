@@ -32,6 +32,41 @@ A simple task management frontend application built using **React**. It allows u
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/task-manager-react.git
-cd task-manager-react
+git clone https://github.com/wakar32/testapp.git
+cd testapp
 ```
+
+### 2. Install Dependencies
+
+Make sure you have Node.js and npm installed, then run:
+npm install
+
+### 3. Start the Application
+
+npm start
+This will launch the development server at http://localhost:3000/.
+
+### 4. Project Structure
+
+src/
+├── components/
+│ ├── TaskBoard.jsx
+│ ├── TaskColumn.jsx
+│ └── TaskCard.jsx
+├── reducers/
+│ └── taskReducer.js
+├── App.jsx
+├── index.js
+├── styles.css
+
+### 5. Notes
+
+The app is built as a frontend-only project — there is no backend or persistent storage.
+
+All data is lost on refresh (as expected per requirements).
+
+ESC key behavior uses native window.addEventListener, cleaned up on unmount.
+
+### 5. Author
+
+Built by Wakar Ahamed as part of a frontend developer assignment.
