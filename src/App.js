@@ -1,25 +1,85 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useRef, useEffect } from "react";
+// import "./styles.css";
+import TaskBoard from "./components/TaskBoard";
+import { taskReducer, initialState } from "./reducers/taskReducer";
 
-function App() {
+export default function App() {
+  const [tasks, dispatch] = useReducer(taskReducer, initialState);
+  const inputRef = useRef();
+  const escPressedOnce = useRef(false);
+
+  const addTask = () => {
+    const value = inputRef.current.value.trim();
+    if (value) {
+      dispatch({ type: "ADD_TASK", payload: value });
+      inputRef.current.value = "";
+    }
+  };
+
+  useEffect(() => {
+    const escHandler = (e) => {
+      if (e.key === "Escape") {
+        if (!escPressedOnce.current) {
+          const confirm = window.confirm(
+            "Are you sure you want to refresh? Your progress will be lost."
+          );
+          if (confirm) window.location.reload();
+          escPressedOnce.current = true;
+        } else {
+          window.location.reload();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", escHandler);
+    return () => window.removeEventListener("keydown", escHandler);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const logData = tasks.map((t) => ({
+        name: t.name,
+        status: t.status,
+        tags: t.tags,
+      }));
+      console.log(JSON.stringify(logData, null, 2));
+    }, 60000);
+    return () => clearInterval(interval);
+  }, [tasks]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app" style={{ padding: "20px" }}>
+      <h1 style={{ textAlign: "center" }}>Task Manager</h1>
+
+      <div
+        className="input-group"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "20px",
+        }}
+      >
+        <input
+          ref={inputRef}
+          placeholder="Enter task name"
+          style={{ padding: "8px", fontSize: "16px" }}
+        />
+        <button
+          onClick={addTask}
+          style={{
+            padding: "8px 12px",
+            fontSize: "16px",
+            cursor: "pointer",
+            background: "#61aefac4",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Add
+        </button>
+      </div>
+
+      <TaskBoard tasks={tasks} dispatch={dispatch} />
     </div>
   );
 }
-
-export default App;
