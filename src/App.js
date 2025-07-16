@@ -49,8 +49,6 @@ export default function App() {
 
   return (
     <div className="app" style={{ padding: "20px" }}>
-      <h1 style={{ textAlign: "center" }}>Task Manager</h1>
-
       <div
         className="input-group"
         style={{
